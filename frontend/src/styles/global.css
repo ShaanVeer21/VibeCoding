@@ -1,0 +1,849 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+.w-tab-pane { display: none; }
+.w-tab-pane.w--tab-active { display: block; }
+
+.graph-tabs_panel { display: none; }
+.graph-tabs_panel.w--tab-active { display: block; }
+
+.opensource_nav-item.w--current { color: var(--neutral--white, #fff); }
+
+.resources-tile_item { display: block; text-decoration: none; color: inherit; }
+
+.opensource_finetune { margin-top: 1.5rem; }
+.opensource_finetune-label { margin-bottom: 0.75rem; opacity: 0.6; font-size: 0.875rem; }
+.opensource_finetune-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.opensource_finetune-tag { display: inline-block; padding: 0.25rem 0.75rem; border: 1px solid rgba(255,255,255,0.2); font-size: 0.8rem; color: inherit; text-decoration: none; transition: border-color 0.2s; }
+.opensource_finetune-tag:hover { border-color: rgba(255,255,255,0.6); }
+
+.opensource_links { display: flex; gap: 1rem; flex-wrap: wrap; }
+.opensource_link { color: inherit; text-decoration: none; opacity: 0.7; font-size: 0.875rem; transition: opacity 0.2s; }
+.opensource_link:hover { opacity: 1; }
+
+.resources_arrow { flex-shrink: 0; opacity: 0.5; transition: opacity 0.2s, transform 0.2s; }
+.resources-tile_item:hover .resources_arrow { opacity: 1; transform: translateX(4px); }
+
+/* ── OSS two-column layout ── */
+.opensource_component {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 3rem;
+  margin-top: 3rem;
+  align-items: start;
+}
+
+.opensource_nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-left: 1px solid rgba(255,255,255,0.15);
+}
+
+.opensource_nav-item {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.25rem;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  font-size: 0.875rem;
+  border-left: 2px solid transparent;
+  margin-left: -1px;
+  transition: color 0.2s, border-color 0.2s;
+  cursor: pointer;
+}
+
+.opensource_nav-item:hover {
+  color: rgba(255,255,255,0.8);
+}
+
+.opensource_nav-item.w--current {
+  color: #fff;
+  border-left-color: #fff;
+}
+
+.opensource_nav-number {
+  font-size: 0.7rem;
+  opacity: 0.5;
+  margin-bottom: 0.2rem;
+  letter-spacing: 0.05em;
+}
+
+.opensource_item-header {
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.opensource_item-header h3 {
+  margin: 0;
+}
+
+/* ── Publications two-column layout ── */
+.resources-2-col_wrap {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.resources-tile_item {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  transition: opacity 0.2s;
+}
+
+.resources-tile_item:last-child {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.resources-tile_item:hover {
+  opacity: 0.8;
+}
+
+.resources-tile_cms-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.resources-tile_content {
+  flex: 1;
+}
+
+.resources_tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 0.5rem;
+}
+
+.resources_title {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin-bottom: 0.4rem;
+}
+
+.resources_date {
+  font-size: 0.8rem;
+  opacity: 0.5;
+}
+
+/* ── Locations grid ── */
+.locations_wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.locations_card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.locations_thumb-wrapper {
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  margin-bottom: 1rem;
+}
+
+.locations_thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.locations_card-link:hover .locations_thumb {
+  transform: scale(1.04);
+}
+
+.locations_content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* ── section_home-locations heading ── */
+.section_home-locations h2 {
+  max-width: 40rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .opensource_component { grid-template-columns: 1fr; }
+  .resources-2-col_wrap { grid-template-columns: 1fr; }
+  .locations_wrapper { grid-template-columns: 1fr; }
+}
+
+/* ── Fix orange text selection → use default blue ── */
+::selection {
+  background-color: #1a73e8 !important;
+  color: #fff !important;
+}
+::-moz-selection {
+  background-color: #1a73e8 !important;
+  color: #fff !important;
+}
+
+/* ── Vertical lines on both sides throughout the site ── */
+.page-wrapper_lines-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+.page-wrapper_lines {
+  position: relative;
+  max-width: 1280px;
+  height: 100%;
+  margin: 0 auto;
+  border-left: 1px solid rgba(255,255,255,0.08);
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+
+/* matrix handled inline in component */
+
+
+/* ── Research section spacing ── */
+.section_home-research .rich-description_component {
+  padding-top: 1rem;
+}
+
+/* ── Clover stamp margin fix ── */
+.rich-description_bg-stamp {
+  margin-top: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* ── FINAL override: beat Webflow orange selection ── */
+:root {
+  --_theme---system--selection-background: #1a73e8;
+  --_theme---system--selection-text: #ffffff;
+}
+::selection {
+  background-color: #1a73e8 !important;
+  color: #fff !important;
+  text-shadow: none !important;
+}
+::-moz-selection {
+  background-color: #1a73e8 !important;
+  color: #fff !important;
+  text-shadow: none !important;
+}
+
+/* ── Locations image hover brightness ── */
+.locations_thumb-wrapper {
+  overflow: hidden;
+  aspect-ratio: 400 / 320;
+}
+
+.locations_thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: filter 0.4s ease, transform 0.4s ease;
+  filter: brightness(0.85);
+}
+
+.locations_card-link:hover .locations_thumb {
+  filter: brightness(1.1);
+  transform: scale(1.03);
+}
+
+.locations_content {
+  padding: 0.75rem 0.25rem 0;
+  font-size: 0.95rem;
+}
+
+/* ── Locations: name below image, not inside it ── */
+.locations_card-link {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.locations_thumb-wrapper {
+  flex: 1;
+}
+
+.locations_content {
+  padding: 0.75rem 0 0 0 !important;
+  font-size: 0.95rem;
+  background: transparent !important;
+  position: static !important;
+}
+
+/* ── OSS Layout ── */
+.opensource_wrapper {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 4rem;
+  margin-top: 4rem;
+}
+
+.opensource_left {
+  position: sticky;
+  top: 6rem;
+  align-self: start;
+}
+
+.opensource_anchor-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.opensource_anchor-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: rgba(255,255,255,0.35);
+  transition: color 0.3s ease;
+}
+
+.opensource_anchor-links.w--current,
+.opensource_anchor-links:hover {
+  color: rgba(255,255,255,1);
+}
+
+.opensource_anchor_number {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.opensource_anchor_bg-circle {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.opensource_anchor_text {
+  font-size: 0.875rem;
+}
+
+.opensource_right {
+  display: flex;
+  flex-direction: column;
+}
+
+.opensource_block {
+  padding: 2.5rem 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.opensource_block.is-last {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.opensource_block_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.opensource_block_intro {
+  flex: 1;
+}
+
+.opensource_block_intro h3 {
+  margin-bottom: 0.75rem;
+}
+
+.opensource_block_links-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.link_element {
+  color: rgba(255,255,255,0.6);
+  text-decoration: underline;
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+}
+
+.link_element:hover {
+  color: white;
+}
+
+.opensource_block_item {
+  margin-top: 2rem;
+}
+
+.models_list.grid-autofit-css {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+.models_cms-item {
+  border: 1px dashed rgba(255,255,255,0.15);
+  padding: 1.25rem;
+}
+
+.models_link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: white;
+  font-size: 0.875rem;
+}
+
+.models_links-dot {
+  width: 6px;
+  height: 6px;
+  background: #e05a2b;
+  flex-shrink: 0;
+}
+
+/* ── OSS fixes ── */
+.opensource_block_links-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  gap: 0.15rem !important;
+  min-width: 120px;
+}
+
+.opensource_block {
+  padding: 2.5rem 2rem !important;
+  border-top: 1px solid rgba(255,255,255,0.12) !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+}
+
+.opensource_block.is-last {
+  border-bottom: 1px solid rgba(255,255,255,0.12) !important;
+}
+
+/* Active nav number — orange fill */
+.opensource_anchor-links.w--current .opensource_anchor_number > div:first-child {
+  color: #e05a2b;
+}
+.opensource_anchor-links.w--current .opensource_anchor_bg-circle svg circle {
+  stroke: #e05a2b;
+}
+.opensource_anchor-links.w--current .opensource_anchor_text {
+  color: white;
+  font-weight: 500;
+}
+
+/* ── OSS final fixes ── */
+/* Links horizontal in one line */
+.opensource_block_links-wrapper {
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  gap: 1.25rem !important;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/* Left nav lines — prevent vertical lines from page-wrapper bleeding into sticky nav */
+.opensource_left {
+  z-index: 1;
+  background: #0a0a0a;
+}
+
+/* ── Publications ── */
+.resources-2-col_wrap {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.resources-2-col_left {
+  position: sticky;
+  top: 6rem;
+}
+
+.resources-tile_list {
+  display: flex;
+  flex-direction: column;
+}
+
+.resources-tile_cms-item {
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.resources-tile_cms-item:last-child {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.resources-tile_link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.75rem 0;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s ease;
+}
+
+.resources-tile_link:hover {
+  opacity: 0.75;
+}
+
+.resources-tile_content {
+  flex: 1;
+}
+
+.resources_category {
+  color: #e05a2b;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  text-transform: none;
+}
+
+.resources_card_title {
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+}
+
+.resources_info-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.resources_info-wrapper.is-more-space {
+  margin-top: 0.5rem;
+  gap: 0.25rem 0.5rem;
+}
+
+.resources_info-slot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.resources_author-dot {
+  color: #e05a2b;
+  margin: 0 0.15rem;
+  font-size: 0.6rem;
+}
+
+.resources-tile_icon-wrap {
+  flex-shrink: 0;
+}
+
+.button_icon-wrap.is-resource-card {
+  width: 2rem;
+  height: 2rem;
+  background: rgba(100,200,180,0.15);
+  border: 1px solid rgba(100,200,180,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(100,200,180);
+}
+
+/* ── Publications fixes ── */
+/* Single teal arrow box - hide duplicate */
+.button_icon-wrap.is-resource-card {
+  width: 2.25rem !important;
+  height: 2.25rem !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.button_icon-wrap.is-resource-card .button_icon-embed:last-child {
+  display: none !important;
+}
+
+.button_icon-wrap.is-resource-card .button_icon-embed {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+/* Remove any internal vertical lines from cards */
+.resources-tile_cms-item,
+.resources-tile_link,
+.resources-tile_content {
+  border-left: none !important;
+  border-right: none !important;
+}
+
+/* Prevent page vertical lines from showing inside right column */
+.resources-2-col_right {
+  position: relative;
+  z-index: 1;
+  background: #0a0a0a;
+}
+
+.resources-2-col_left {
+  position: relative;
+  z-index: 1;
+  background: #0a0a0a;
+}
+
+/* ── Publications FINAL fix ── */
+.resources-tile_list {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.resources-tile_cms-item {
+  border-top: 1px solid rgba(255,255,255,0.1) !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  background: transparent !important;
+}
+
+.resources-tile_cms-item:last-child {
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+.resources-tile_link {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 2rem !important;
+  padding: 1.75rem 0 !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.resources-tile_content {
+  flex: 1;
+  border: none !important;
+}
+
+.resources_category {
+  color: #e05a2b !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.5rem !important;
+  text-transform: none !important;
+}
+
+.resources_card_title {
+  font-size: 1.1rem !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.resources_meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.2rem 0.4rem;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.45);
+}
+
+.resources_dot {
+  color: #e05a2b;
+  margin: 0 0.1rem;
+  font-size: 0.5rem;
+}
+
+/* Orange arrow — same as site-wide button icon */
+.resources-tile_arrow {
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: #e05a2b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.resources-tile_arrow .button_icon-embed {
+  width: 1.1rem;
+  height: 1.1rem;
+  position: absolute;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.resources-tile_arrow .button_icon-embed:first-child {
+  transform: translate(0, 0);
+  opacity: 1;
+}
+
+.resources-tile_arrow .button_icon-embed:last-child {
+  transform: translate(-120%, 120%);
+  opacity: 0;
+}
+
+.resources-tile_link:hover .resources-tile_arrow .button_icon-embed:first-child {
+  transform: translate(120%, -120%);
+  opacity: 0;
+}
+
+.resources-tile_link:hover .resources-tile_arrow .button_icon-embed:last-child {
+  transform: translate(0, 0);
+  opacity: 1;
+}
+
+/* ── Publications final alignment fixes ── */
+.resources-tile_link {
+  padding: 1.75rem 0 !important;
+  align-items: flex-start !important;
+}
+
+/* All arrow boxes same fixed size, always orange, no blue */
+.resources-tile_arrow {
+  width: 2.25rem !important;
+  height: 2.25rem !important;
+  min-width: 2.25rem !important;
+  min-height: 2.25rem !important;
+  background: #e05a2b !important;
+  color: white !important;
+  margin-top: 0.25rem;
+}
+
+.resources-tile_arrow:hover,
+.resources-tile_link:hover .resources-tile_arrow {
+  background: #e05a2b !important;
+  color: white !important;
+}
+
+/* Fix padding on content inside each card */
+.resources-tile_content {
+  padding-top: 0 !important;
+}
+
+.resources_category {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Override Webflow blue link hover on publication cards */
+.resources-tile_link:hover,
+.resources-tile_link:focus,
+.resources-tile_link:active {
+  color: white !important;
+  background: transparent !important;
+}
+
+.resources-tile_link:hover .resources-tile_arrow,
+.resources-tile_link:focus .resources-tile_arrow {
+  background: #e05a2b !important;
+  color: white !important;
+}
+
+/* ── Publications: bordered card boxes ── */
+.resources-tile_list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem !important;
+}
+
+.resources-tile_cms-item {
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  border-top: 1px solid rgba(255,255,255,0.12) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.12) !important;
+  background: transparent !important;
+}
+
+.resources-tile_cms-item:last-child {
+  border-bottom: 1px solid rgba(255,255,255,0.12) !important;
+}
+
+.resources-tile_link {
+  padding: 1.5rem !important;
+  align-items: flex-start !important;
+}
+
+/* ── Publications card final fix ── */
+.resources-tile_list {
+  gap: 0.75rem !important;
+}
+
+.resources-tile_link {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 1.5rem !important;
+}
+
+.resources-tile_content {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+.resources-tile_arrow {
+  flex-shrink: 0 !important;
+  margin-left: 1.5rem !important;
+  align-self: flex-start !important;
+}
+
+/* ── CTA "base" button — white bg, dark text, orange arrow ── */
+.section_cta .button_element {
+  background: white !important;
+  color: #0a0a0a !important;
+  border-color: white !important;
+}
+
+.section_cta .button_element .button_text {
+  color: #0a0a0a !important;
+}
+
+.section_cta .button_element .button_corner-icon {
+  color: #0a0a0a !important;
+}
+
+.section_cta .button_element .button_icon-wrap {
+  background: #e05a2b !important;
+  color: white !important;
+}
+
+/* Ensure lines show over CTA background image */
+.section_cta {
+  position: relative;
+}
+
+/* Navbar — make sure lines show through */
+.navbar_component,
+.section_hero {
+  position: relative;
+}
