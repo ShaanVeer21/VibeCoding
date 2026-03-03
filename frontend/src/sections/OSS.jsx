@@ -54,25 +54,59 @@ const tools = [
 export default function OSS() {
   const [activeId, setActiveId] = useState("tt");
   const blockRefs = useRef({});
-
+  // ── Intersection observer for sticky nav ──
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
+          if (entry.isIntersecting) setActiveId(entry.target.id);
         });
       },
       { threshold: 0.4 }
     );
-
     tools.forEach((t) => {
       const el = blockRefs.current[t.id];
       if (el) observer.observe(el);
     });
-
     return () => observer.disconnect();
+  }, []);
+
+  // ── Unicorn Studio matrix init (same pattern as Research) ──
+  useEffect(() => {
+    const elementId = "oss-matrix-embed";
+
+    const initUnicorn = () => {
+      if (window.UnicornStudio) {
+        window.UnicornStudio.addScene({
+          elementId,
+          fps: 60,
+          scale: 1,
+          dpi: 1.5,
+          projectId: "B9BRX3MwUCObhpC1jyf2",
+          lazyLoad: false,
+        }).catch(() => {});
+        return;
+      }
+      if (!document.querySelector('script[src*="unicornstudio"]')) {
+        const s = document.createElement("script");
+        s.src = "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.34/dist/unicornStudio.umd.js";
+        s.onload = () => {
+          window.UnicornStudio.addScene({
+            elementId,
+            fps: 60,
+            scale: 1,
+            dpi: 1.5,
+            projectId: "B9BRX3MwUCObhpC1jyf2",
+            lazyLoad: false,
+          }).catch(() => {});
+        };
+        document.body.appendChild(s);
+      } else {
+        setTimeout(initUnicorn, 200);
+      }
+    };
+
+    initUnicorn();
   }, []);
 
   const scrollTo = (id) => {
@@ -195,13 +229,14 @@ export default function OSS() {
             </div>
           </div>
 
-          {/* Matrix animation strip at bottom of OSS */}
-          <div data-wf--element-wgl-matrix--variant="is-no-margin" className="matrix_wrapper w-variant-46b6ac92-94cb-1ede-90a2-91a2d0efa245">
-            <div data-us-project="B9BRX3MwUCObhpC1jyf2" className="matrix_embed"></div>
-          </div>
-
         </div>
       </div>
+
+      {/* ── Matrix animation strip — constrained to vertical lines ── */}
+      <div style={{ maxWidth: "1280px", margin: "0 auto", height: "50px", overflow: "hidden" }}>
+        <div id="oss-matrix-embed" style={{ width: "100%", height: "100%" }} />
+      </div>
+
     </section>
   );
 }

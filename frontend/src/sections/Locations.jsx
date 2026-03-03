@@ -11,13 +11,13 @@ const ArrowSVG = () => (
   </svg>
 );
 
-export default function Locations() {
-  const locations = [
-    { num: "1", name: "Paris",  img: "https://cdn.prod.website-files.com/68ffda447d877eb44580fee2/69007ac183c89bb9212aedbc_Paris.webp" },
-    { num: "2", name: "Mumbai", img: "https://cdn.prod.website-files.com/68ffda447d877eb44580fee2/69007abf1fe6ec061a00392a_Mumbai.webp" },
-    { num: "3", name: "London", img: "https://cdn.prod.website-files.com/68ffda447d877eb44580fee2/69007ac02aa8c905a04bd826_London.webp" },
-  ];
+const locations = [
+  { num: "1", name: "Paris",  img: "https://cdn.prod.website-files.com/68ffda447d877eb44580fee2/69007ac183c89bb9212aedbc_Paris.webp" },
+  { num: "2", name: "Mumbai", img: "https://cdn.prod.website-files.com/68ffda447d877eb44580fee2/69007abf1fe6ec061a00392a_Mumbai.webp" },
+  { num: "3", name: "London", img: "https://cdn.prod.website-files.com/68ffda447d877eb44580fee2/69007ac02aa8c905a04bd826_London.webp" },
+];
 
+export default function Locations() {
   return (
     <section className="section_home-locations">
       <div className="container-regular">
@@ -27,18 +27,18 @@ export default function Locations() {
           <div>Locations</div>
         </div>
 
-        <h4 style={{
-          fontSize: "clamp(1.1rem, 3vw, 1.2rem)",
-          fontWeight: "350",
-          lineHeight: "1.2",
+        <p style={{
+          fontSize: "clamp(1rem, 2.5vw, 1.1rem)",
+          fontWeight: 350,
+          lineHeight: 1.4,
           maxWidth: "32rem",
           marginBottom: "3rem",
+          marginTop: 0,
         }}>
           To Expand and Collaborate with global frontier talent, we have carefully established our AI Lab in key locations:
-        </h4>
+        </p>
 
-        {/* Cards — use original Webflow classes so CSS hover works */}
-        <div className="locations_wrapper" style={{
+        <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
           gap: "1rem",
@@ -49,26 +49,55 @@ export default function Locations() {
               key={loc.name}
               href="#"
               onClick={(e) => e.preventDefault()}
-              className="locations_card-link w-inline-block"
+              style={{
+                textDecoration: "none",
+                color: "inherit",
+                display: "flex",
+                flexDirection: "column",
+                border: "1px solid rgba(255,255,255,0.12)",
+                overflow: "hidden",
+              }}
             >
-              <div className="locations_thumb-wrapper">
+              {/* Image wrapper */}
+              <div style={{
+                overflow: "hidden",
+                aspectRatio: "400 / 265",
+                flexShrink: 0,
+              }}>
                 <img
                   src={loc.img}
                   alt={loc.name}
                   loading="lazy"
                   width="400"
-                  height="320"
-                  className="locations_thumb"
+                  height="265"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                    filter: "brightness(0.85)",
+                    transition: "filter 0.4s ease, transform 0.4s ease",
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.filter = "brightness(1.05)"; e.currentTarget.style.transform = "scale(1.03)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.filter = "brightness(0.85)"; e.currentTarget.style.transform = "scale(1)"; }}
                 />
               </div>
-              <div className="locations_content">
-                <div>{loc.num}. {loc.name}</div>
+
+              {/* City name — inside card as dark footer */}
+              <div style={{
+                padding: "0.875rem 1.25rem",
+                fontSize: "0.95rem",
+                color: "rgba(255,255,255,0.85)",
+                background: "#111",
+                borderTop: "1px solid rgba(255,255,255,0.08)",
+              }}>
+                {loc.num}. {loc.name}
               </div>
             </a>
           ))}
         </div>
 
-        {/* Explore Roles — is-secondary variant matches original dark outline style */}
+        {/* Explore Roles button */}
         <div className="button_group is-section-bottom">
           <a
             href="https://app.screenloop.com/careers/aryaxai/"
